@@ -50,10 +50,11 @@ export class BarrelCactus {
       this.mesh.position.set(this.position.x, 0, this.position.z);
       
       // Scale the cactus based on size (max 0.5 cowboys tall)
-      this.mesh.scale.set(this.size, this.size, this.size);
+      // Multiply by 5 to make barrel cactus 5x bigger
+      this.mesh.scale.set(this.size * 5, this.size * 5, this.size * 5);
       
-      // Adjust collision radius based on size
-      this.collisionRadius = 0.6 * this.size;
+      // Adjust collision radius based on size (also 5x bigger to match visual scale)
+      this.collisionRadius = 0.6 * this.size * 5;
 
       // Enable shadows on all meshes in the model
       this.mesh.traverse((child) => {
@@ -89,7 +90,7 @@ export class BarrelCactus {
 
     const cactusWorldPos = new THREE.Vector3(
       this.mesh.position.x,
-      this.mesh.position.y + 0.3 * this.size, // Center of barrel cactus body
+      this.mesh.position.y + 0.3 * this.size * 5, // Center of barrel cactus body (5x scale)
       this.mesh.position.z
     );
     const distance = cactusWorldPos.distanceTo(playerPosition);
